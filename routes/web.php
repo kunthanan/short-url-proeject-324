@@ -19,3 +19,4 @@ Route::post('/new','ControController@input');
 
 Route::get('/new','ControController@index');
 Route::get('/','ShowController@index');
+Route::get('/gt/{code}','ControController@check');

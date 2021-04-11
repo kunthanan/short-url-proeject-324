@@ -23,7 +23,7 @@
 <div class="row justify-content-md-center mx-5">
     <div class="col-12">
     <table class="table">
-        <caption>คำอธิบายตาราง</caption>
+        <caption>Your Quota Remaining {{10-count($URLs)}}/10</caption>
         <thead>
         <tr>
             <th>#</th>
@@ -33,29 +33,21 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        @if(!$URLs->isEmpty())
+            @foreach($URLs as $index=>$URL)
+                <tr>
+                    <th scope="row">{{$index+1}}</th>
+                    <td>{{$URL->longurl}}</td>
+                   <td> <a href="/gt/{{$URL->shorturl}}">short.local/gt/{{$URL->shorturl}}</a></td>
+                    <td>{{$URL->created_at}}</td>
+                </tr>
+            @endforeach
+        @endif
         </tbody>
     </table>
     </div>
 </div>
-    <a href="/new"><button class="btn btn-outline-primary">Back</button></a>
+    <a href="/new"><button class="btn btn-outline-primary">Create</button></a>
 </div>
 
 

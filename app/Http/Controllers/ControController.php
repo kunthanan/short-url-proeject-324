@@ -37,9 +37,23 @@ class ControController extends Controller
             $randomStringx2 .= $charactersx2[rand(0, $charactersLengthx2 - 1)];
         }
 
-        $URL->shorturl = "short.local/gt/$id_num$randomString$randomStringx2";
+        $URL->shorturl = "$id_num$randomString$randomStringx2";
         $URL->save();
 
         return redirect('/');
+    }
+
+    public function check($code){
+        //dd($code);
+        $result = URL::Where('shorturl',$code)->first();
+//        dd($result);
+
+        if ($result) {
+            return redirect()->away($result->longurl);
+        }
+
+        return 'ไม่พบรหัส Short URL นี้' ;
+
+
     }
 }
